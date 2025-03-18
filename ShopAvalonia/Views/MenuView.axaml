@@ -1,0 +1,46 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:ShopAvalonia.ViewModels"
+             mc:Ignorable="d"
+             x:Class="ShopAvalonia.Views.MenuView"
+             x:DataType="vm:MenuViewModel">
+
+  <StackPanel Background="#282c34">
+
+    <Button Content="☰" Command="{Binding ToggleMenuCommand}" Margin="10" />
+
+    <ListBox>
+
+      <ListBoxItem>
+        <Button Command="{Binding NavigateCommand}" CommandParameter="Shop" Background="Transparent" BorderBrush="Transparent">
+          <StackPanel Orientation="Horizontal">
+            <Image Source="avares://ShopAvalonia/Assets/avalonia-logo.ico" Width="24" Height="24" />
+            <TextBlock Text="Магазин" Margin="10,0,0,0" IsVisible="{Binding IsMenuExpanded}" />
+          </StackPanel>
+        </Button>
+      </ListBoxItem>
+
+      <ListBoxItem>
+        <Button Command="{Binding NavigateCommand}" CommandParameter="Cart" Background="Transparent" BorderBrush="Transparent">
+          <StackPanel Orientation="Horizontal">
+            <Image Source="avares://ShopAvalonia/Assets/avalonia-logo.ico" Width="24" Height="24" />
+            <TextBlock Text="Корзина" Margin="10,0,0,0" IsVisible="{Binding IsMenuExpanded}" />
+          </StackPanel>
+        </Button>
+      </ListBoxItem>
+
+      <ListBoxItem>
+        <Button Command="{Binding NavigateCommand}" CommandParameter="Settings" Background="Transparent" BorderBrush="Transparent">
+          <StackPanel Orientation="Horizontal">
+            <Image Source="avares://ShopAvalonia/Assets/avalonia-logo.ico" Width="24" Height="24" />
+            <TextBlock Text="Настройки" Margin="10,0,0,0" IsVisible="{Binding IsMenuExpanded}" />
+          </StackPanel>
+        </Button>
+      </ListBoxItem>
+
+      
+    </ListBox>
+  </StackPanel>
+</UserControl>

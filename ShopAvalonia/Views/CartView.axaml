@@ -1,0 +1,66 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="ShopAvalonia.Views.CartView"
+             xmlns:vm="clr-namespace:ShopAvalonia.ViewModels"
+             xmlns:conv="clr-namespace:ShopAvalonia.Converters"
+             x:DataType="vm:CartViewModel">
+
+  <UserControl.Resources>
+    <conv:BoolToImageConverter x:Key="BoolToImageConverter" />
+  </UserControl.Resources>
+
+  <StackPanel Margin="20" Spacing="10">
+   
+    <TextBlock Text="Корзина" FontSize="18" FontWeight="Bold" />
+
+    
+    <TextBlock Text="{Binding UniqueItemsCount, StringFormat=Количество уникальных товаров: {0}}" />
+    <TextBlock Text="{Binding TotalQuantity, StringFormat=Общее количество товаров: {0}}" />
+
+    
+    <Border BorderBrush="Black" BorderThickness="1" CornerRadius="4" Margin="0,10,0,0">
+      <StackPanel>
+        
+        <Grid Background="#F0F0F0" HorizontalAlignment="Stretch" Margin="0,0,0,1">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="150" />
+            <ColumnDefinition Width="80" />
+          </Grid.ColumnDefinitions>
+          <TextBlock Text="№" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" />
+          <TextBlock Text="Название" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" />
+          <TextBlock Text="Количество" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" />
+          <TextBlock Text="Наличие" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" />
+        </Grid>
+
+        
+        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+          <ItemsControl ItemsSource="{Binding Items}">
+            <ItemsControl.ItemTemplate>
+              <DataTemplate>
+                
+                <Border BorderBrush="Gray" BorderThickness="0,0,0,1">
+                  <Grid ColumnDefinitions="50, *, 150, 80">
+                    
+                    <TextBlock Text="{Binding Index}" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    
+                    <TextBlock Text="{Binding ProductName}" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    
+                    <TextBlock Text="{Binding Quantity}" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    
+                    <Image Source="{Binding IsAvailable, Converter={StaticResource BoolToImageConverter}}" Grid.Column="3"
+       Width="24" Height="24" />
+                  </Grid>
+                </Border>
+              </DataTemplate>
+            </ItemsControl.ItemTemplate>
+          </ItemsControl>
+        </ScrollViewer>
+      </StackPanel>
+    </Border>
+  </StackPanel>
+</UserControl>

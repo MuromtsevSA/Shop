@@ -1,0 +1,47 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:ShopAvalonia.ViewModels"
+        xmlns:views="clr-namespace:ShopAvalonia.Views"
+        xmlns:local="clr-namespace:ShopAvalonia.Converters"
+        mc:Ignorable="d"
+        x:Class="ShopAvalonia.Views.MainWindow"
+        x:DataType="vm:MainViewModel"
+        Title="ShopAvalonia"
+        Width="800"
+        Height="600">
+
+  <Window.Styles>
+    <Style>
+      <Style.Resources>
+        <local:BoolToWidthConverter x:Key="BoolToWidthConverter" />
+      </Style.Resources>
+    </Style>
+  </Window.Styles>
+
+  <Grid>
+    
+    <Grid.RowDefinitions>
+      
+      <RowDefinition Height="50" />
+     
+      <RowDefinition Height="*" />
+    </Grid.RowDefinitions>
+
+    <Grid.ColumnDefinitions>
+      
+      <ColumnDefinition Width="{Binding MenuViewModel.IsMenuExpanded, Converter={StaticResource BoolToWidthConverter}}" />
+      
+      <ColumnDefinition Width="*" />
+    </Grid.ColumnDefinitions>
+
+    
+    <views:MenuView Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" DataContext="{Binding MenuViewModel}" />
+
+   
+    <views:HeaderView Grid.Row="0" Grid.Column="1" DataContext="{Binding HeaderViewModel}" />
+
+   
+    <ContentControl Grid.Row="1" Grid.Column="1" Content="{Binding CurrentPage}" />
+  </Grid>
+</Window>

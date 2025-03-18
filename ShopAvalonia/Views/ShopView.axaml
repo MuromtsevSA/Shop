@@ -1,0 +1,31 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:ShopAvalonia.ViewModels"
+             x:Class="ShopAvalonia.Views.ShopView"
+             x:DataType="vm:ShopViewModel"
+             x:Name="Root">
+  <ScrollViewer>
+    <ItemsControl ItemsSource="{Binding Products}">
+      <ItemsControl.ItemsPanel>
+        <ItemsPanelTemplate>
+          <WrapPanel Orientation="Horizontal" />
+        </ItemsPanelTemplate>
+      </ItemsControl.ItemsPanel>
+
+      <ItemsControl.ItemTemplate>
+        <DataTemplate>
+          <Border BorderBrush="Black" BorderThickness="1" Margin="10" Padding="10" Width="150">
+            <StackPanel>
+              <Image Source="{Binding ImageUrl}" Height="100" Stretch="UniformToFill" />
+              <TextBlock Text="{Binding Name}" FontWeight="Bold" TextAlignment="Center" />
+              <TextBlock Text="{Binding Quantity, StringFormat=Количество: {0}}" TextAlignment="Center" />
+              <Button Content="Добавить в корзину"
+        Command="{Binding AddToCartCommand}"
+        CommandParameter="{Binding}" />
+            </StackPanel>
+          </Border>
+        </DataTemplate>
+      </ItemsControl.ItemTemplate>
+    </ItemsControl>
+  </ScrollViewer>
+</UserControl>
